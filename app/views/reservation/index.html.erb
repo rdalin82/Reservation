@@ -1,5 +1,30 @@
 <nav class="nav-bar">
   <div class="container-fluid">
     <h1>Reservation</h1>
+    <a href="#" class="navbar-left">New Reservation?</a>
   </div>
 </nav>
+<div class="container-fluid">
+  <table class="table table-striped">
+    <tr>
+      <th>Name</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th>No. of Seats</th>
+      <th>Show</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    <% @reservations.each do |reservation| %>
+    <tr>
+      <td><%= reservation.name %></td>
+      <td><%= reservation.time %>:00</td>
+      <td><%= reservation.time+1 %>:00</td>
+      <td><%= reservation.seats %></td>
+      <td>Show</td>
+      <td>Edit</td>
+      <td>Delete</td>
+    </tr>
+    <% end %> 
+  </table>
+</div>
