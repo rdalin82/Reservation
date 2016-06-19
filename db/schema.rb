@@ -11,13 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160618220051) do
+ActiveRecord::Schema.define(version: 20160619140400) do
 
   create_table "reservations", force: :cascade do |t|
     t.string   "name"
     t.integer  "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "seats"
   end
+
+  create_table "tables", force: :cascade do |t|
+    t.integer  "reservation_id"
+    t.integer  "size"
+    t.integer  "time"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "tables", ["reservation_id"], name: "index_tables_on_reservation_id"
 
 end
