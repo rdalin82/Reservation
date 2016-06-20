@@ -1,0 +1,42 @@
+<!-- <div class="container-fluid">
+  <h3>Enter in the new Reservation</h3>
+  <h3><a href="/"><small>Home</small></a></h3>
+  <form action="/create" method="post" >
+    <div class="form-group">
+      <label>Name: </label>
+      <input name="reservation[name]" type="text"/>
+    </div>
+    <div class="form-group">
+      <label>Date: </label>
+      <input name="date" id=date type="text"/>
+    </div>
+    <div class="form-group">
+      <label>Time: </label>
+      <select name="time">
+        <% @times.each do |time| %>
+        <option><%= time %></option>
+        <% end %> 
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Seats: </label>
+      <select name="seats">
+        <% (0..10).each do |seat| %>
+        <option><%= seat %></option>
+        <% end %> 
+      </select>
+    </div>
+    <button class="btn-primary" value="<%= form_authenticity_token %>">Reserve</button>
+  </form>
+</div> -->
+<div class="container-fluid">
+  <h3><a href="/"><small>Home</small></a></h3>
+  <h3>Enter in the new Reservation</h3>
+  <%= form_for @reservation, url: {action: "create"} do |f| %>
+    <div class="form-group">
+      <label>Name: </label>
+      <%= f.text_field :name %>
+    </div>
+    <%= f.submit "Create", html: {class: "btn btn-primary"}%>
+  <% end %>
+</div>
