@@ -13,6 +13,17 @@
     <h1>Reservation</h1>
   </div>
 </nav>
+<% if flash %> 
+<div class="cointainer-fluid">
+  <% flash.each do |key, value| %> 
+    <% value.each do |v| %>
+      <div class="alert alert-<%= key %>">
+        <%=v%>
+      </div>
+    <% end %> 
+  <% end %> 
+</div>
+<% end %> 
 <%= yield %>
 <footer class="footer">
   <div class="container-fluid">

@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   root 'reservation#index'
-  get "/new" => "reservation#new"
-  post "/create" => "reservation#create"
-  resources :reservations
+  # get "/new" => "reservation#new"
+  # post "/reservation" => "reservation#create"
+  resources :reservation
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
