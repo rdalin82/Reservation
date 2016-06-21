@@ -10,7 +10,9 @@ class Reservation < ActiveRecord::Base
     tables_available > 0
   end
   def tables_available 
-    requested_seats = self.seats/4 - self.seats % 4 
-    TableCount.four_seater - Table.where(time: self.time).count - requested_seats
+    TableCount.four_seater - Table.where(time: self.time).count - tables_needed
+  end
+  def tables_needed
+    self.seats/4 + self.seats%4
   end
 end

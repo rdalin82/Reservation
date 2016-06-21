@@ -24,5 +24,12 @@ RSpec.describe ReservationController, type: :controller do
       expect(response).to redirect_to(root_path)
       follow_redirect!
     end
+    it "does not save an invalid reservation" do 
+      post "/reservation", reservation: {name: nil, seats: nil, time: nil}
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to(new_reservation_path)
+      follow_redirect!
+      expect(flash[:warning].nil?).to eq(false)
+    end
   end
 end
