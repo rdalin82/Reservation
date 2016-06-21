@@ -7,12 +7,16 @@ class Reservation < ActiveRecord::Base
   has_many :tables
 
   def tables_available? 
-    tables_available > 0
+    tables_available >= tables_needed
   end
   def tables_available 
-    TableCount.four_seater - Table.where(time: self.time).count - tables_needed
+    TableCount.four_seater - Table.where(time: self.time).count
   end
   def tables_needed
-    self.seats/4 + self.seats%4
+    seats = self.seats || 1
+    seats/4 + seats%4
+  end
+  def tables_used 
+    TableCount.four_seater - Table.where(time: self.time).count
   end
 end

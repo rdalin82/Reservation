@@ -4,7 +4,6 @@ class CreateTables < ActiveRecord::Migration
       t.references :reservation, index: true, foreign_key: true
       t.integer :size
       t.integer :time
-
       t.timestamps null: false
     end
   end

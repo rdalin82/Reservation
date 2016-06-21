@@ -17,7 +17,7 @@ RSpec.describe Reservation, type: :model do
     end 
     it "should have a method tables_available" do
       #Total 4 seat tables - Tables at that time - (this request)full 4 seaters - partial 4 seaters
-      expected_count = TableCount.four_seater - Table.where(time: reservation.time).count - reservation.tables_needed
+      expected_count = TableCount.four_seater - Table.where(time: reservation.time).count
       expect(reservation.tables_available).to eq(expected_count)
     end
   end
