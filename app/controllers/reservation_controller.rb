@@ -8,11 +8,6 @@ class ReservationController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     if @reservation.tables_available? && @reservation.save 
-      #make a create table for each table in the seats capacity
-      @reservation.save
-      @reservation.tables_needed.times do |x| 
-        @reservation.tables << Table.create!(time: @reservation.time, size: 4)
-      end 
       flash[:success] = ["Your Table has been reserved" ]
       redirect_to root_path
     elsif !@reservation.tables_available?

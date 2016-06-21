@@ -4,6 +4,7 @@ class Reservation < ActiveRecord::Base
   validates :time, presence: true
   validates :name, presence: true
   validates :seats, presence: true
+  before_save :create_tables
   has_many :tables
 
   def tables_available? 
@@ -19,4 +20,9 @@ class Reservation < ActiveRecord::Base
   def tables_used 
     TableCount.four_seater - Table.where(time: self.time).count
   end
+  def create_tables
+    number_of_tables = tables_used || 1 
+    number_of_tables.times { |x| Table.create(time: 1, size: 4, reservation_id: self.id) }
+  end
+
 end
