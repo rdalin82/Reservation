@@ -1,5 +1,5 @@
 == README
-Reservation system that tracks hour, date, number of seats needed and whether their is capacity in the restaurant. 
+Reservation system that tracks hour, date, number of seats needed and whether there is capacity in the restaurant. 
 
 To run: 
 rake db:migrate 
