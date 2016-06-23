@@ -7,7 +7,7 @@
     <tr>
       <th>Name</th>
       <th>Start Time</th>
-      <th>End Time</th>
+      <th>Date</th>
       <th>No. of Seats</th>
       <th>Show</th>
       <th>Edit</th>
@@ -16,8 +16,8 @@
     <% @reservations.each do |reservation| %>
     <tr>
       <td><%= reservation.name %></td>
-      <td><%= reservation.time %>:00</td>
-      <td><%= reservation.time+1 %>:00</td>
+      <td><%= reservation.time_display %></td>
+      <td><%= "#{reservation.date.strftime("%B %d, %Y")} " if reservation.date %></td>
       <td><%= reservation.seats %></td>
       <td>Show</td>
       <td>Edit</td>

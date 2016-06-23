@@ -3,6 +3,7 @@ class ReservationController < ApplicationController
     @reservations = Reservation.all
   end
   def new
+    @times = (0..23)
     @reservation = Reservation.new
   end
   def create
@@ -28,6 +29,7 @@ class ReservationController < ApplicationController
 
   private 
   def reservation_params 
-    params.require(:reservation).permit(:time, :name, :seats)
+    params[:reservation][:time] = params[:date][:hour]
+    params.require(:reservation).permit(:time, :name, :seats, :date)
   end
 end
