@@ -10,10 +10,10 @@ describe "visit new page path", :type => :feature do
     within("form") do 
       fill_in("reservation[name]", :with=>"John")
       select(1, :from=>"reservation[seats]")
-      fill_in("reservation[date]", :with=>"2016-06-22")
+      fill_in("reservation[date]", :with=>"2016-09-22")
       select("6 AM", :from=>"date[hour]")
       click_button("Reserve")
     end
-    expect(page).to have_content "Reservation"
+    expect(page).to have_content "John"
   end
 end

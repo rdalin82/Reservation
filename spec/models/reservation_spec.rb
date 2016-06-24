@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe Reservation, type: :model do
   describe "validations" do 
     let(:empty_reservation) { Reservation.new }
-    let(:zero_reservation) { Reservation.new(time: 1, name: "Carlson", seats: 0, date: "2016-06-22") }
-    let(:valid_reservation) { Reservation.new(time: 1, name: "Carlson", seats: 4, date: "2016-06-22") }
-    let(:reservation) {Reservation.create(time: 1, name: "Jefferson", seats: 4, date: "2016-06-22") }
+    let(:zero_reservation) { Reservation.new(time: 1, name: "Carlson", seats: 0, date: DateTime.now + 3.months) }
+    let(:valid_reservation) { Reservation.new(time: 1, name: "Carlson", seats: 4, date: DateTime.now + 3.months) }
+    let(:reservation) {Reservation.create(time: 1, name: "Jefferson", seats: 4, date: DateTime.now + 3.months) }
     it "should not save an empty reservation" do 
       expect(empty_reservation.save).to eq(false) 
     end
