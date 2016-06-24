@@ -17,7 +17,7 @@
       <td><%= reservation.time_display %></td>
       <td><%= "#{reservation.date.strftime("%B %d, %Y")} " if reservation.date %></td>
       <td><%= reservation.seats %></td>
-      <td><%= link_to "Destroy", reservation_path(reservation), method: :delete, data: {confirm: "Are you sure you want to cancel this resrvation?"}%></td>
+      <td><%= link_to "Cancel Reservation", reservation_path(reservation), method: :delete, data: {confirm: "Are you sure you want to cancel this reservation?"}%></td>
     </tr>
     <% end %> 
   </table>

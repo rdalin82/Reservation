@@ -19,7 +19,7 @@ RSpec.describe ReservationController, type: :controller do
   end
   describe "Create new reservation", :type => :request do 
     it "saves a valid reservation" do 
-      post "/reservation", reservation: {name: "Rob", seats: 4, time: 1 }, date: {hour: 1 }
+      post "/reservation", reservation: {name: "Rob", seats: 4, time: 1, date: "2016-06-22" }, date: {hour: 1 }
       expect(response).to have_http_status(302)
       expect(response).to redirect_to(root_path)
       follow_redirect!
@@ -32,13 +32,13 @@ RSpec.describe ReservationController, type: :controller do
       expect(flash[:warning].nil?).to eq(false)
     end
     it "should stop at the table limit" do 
-      post "/reservation", reservation: { name: "Rob", seats: 81, time: 1 }, date: {hour: 1 }
+      post "/reservation", reservation: { name: "Rob", seats: 81, time: 1, date: "2016-06-22" }, date: {hour: 1 }
       expect(response).to have_http_status(302)
       expect(flash[:warning][0]).to include("No tables")
     end
     it "should not post if there are too many existing tables" do 
-      20.times { |x| Table.create(time: 1, size: 4) }
-      post "/reservation", reservation: { name: "Robb", seats: 4, time: 1 }, date: {hour: 1 }
+      20.times { |x| Table.create(time: 1, size: 4, date: "2016-06-22") }
+      post "/reservation", reservation: { name: "Robb", seats: 4, time: 1, date: "2016-06-22" }, date: {hour: 1 }
       expect(response).to have_http_status(302)
       expect(flash[:warning][0]).to include("No tables")
     end

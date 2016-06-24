@@ -1,14 +1,16 @@
 == README
 Reservation system that tracks hour, date, number of seats needed and whether there is capacity in the restaurant. 
 
-To run: 
+== To run: 
 rake db:migrate 
+
 rails s
 
-To run tests: 
+== To run tests: 
 rspec spec/* 
+
 or
+
 rspec 
 
 
-<tt>rake doc:app</tt>.

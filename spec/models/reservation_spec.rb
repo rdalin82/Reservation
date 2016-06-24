@@ -1,11 +1,10 @@
 require 'rails_helper'
-require "#{Rails.root}/config/table_config"
 
 RSpec.describe Reservation, type: :model do
   describe "validations" do 
     let(:empty_reservation) { Reservation.new }
-    let(:valid_reservation) { Reservation.new(time: 1, name: "Carlson", seats: 4) }
-    let(:reservation) {Reservation.create(time: 1, name: "Jefferson", seats: 4) }
+    let(:valid_reservation) { Reservation.new(time: 1, name: "Carlson", seats: 4, date: "2016-06-22") }
+    let(:reservation) {Reservation.create(time: 1, name: "Jefferson", seats: 4, date: "2016-06-22") }
     it "should not save an empty reservation" do 
       expect(empty_reservation.save).to eq(false) 
     end

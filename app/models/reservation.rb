@@ -1,9 +1,8 @@
-require "#{Rails.root}/config/table_config"
-
 class Reservation < ActiveRecord::Base
   validates :time, presence: true
   validates :name, presence: true
   validates :seats, presence: true
+  validates :date, presence: true 
   before_validation :tables_available?, {message: "No Tables Available"}
   after_save :create_tables
   has_many :tables, dependent: :destroy
