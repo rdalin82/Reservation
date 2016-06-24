@@ -3,6 +3,7 @@ class Reservation < ActiveRecord::Base
   validates :name, presence: true
   validates :seats, presence: true
   validates :date, presence: true 
+  validates_numericality_of :seats, greater_than: 0
   before_validation :tables_available?, {message: "No Tables Available"}
   after_save :create_tables
   has_many :tables, dependent: :destroy

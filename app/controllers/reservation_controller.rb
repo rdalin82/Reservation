@@ -3,6 +3,7 @@ class ReservationController < ApplicationController
     @reservations = Reservation.all
   end
   def new
+    @seats = (1..20).to_a
     @times = (0..23)
     @reservation = Reservation.new
   end
