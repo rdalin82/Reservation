@@ -5,7 +5,6 @@ class Reservation < ActiveRecord::Base
   validates :date, presence: true 
   validates_numericality_of :seats, greater_than: 0
   before_validation :tables_available?, {message: "No Tables Available"}
-  before_validation :is_future_time?
   after_save :create_tables
   has_many :tables, dependent: :destroy
 
@@ -20,14 +19,7 @@ class Reservation < ActiveRecord::Base
       "#{self.time}:00am"
     end
   end 
-  def is_future_time? 
-    if self.date && self.date > Time.now - 1.hour 
-      true 
-    else 
-      errors.add(:date, "cannot be in the past")
-      false
-    end
-  end
+
 
   def tables_available? 
     tables_available >= tables_needed
