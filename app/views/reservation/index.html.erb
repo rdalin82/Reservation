@@ -2,6 +2,7 @@
   <h4><a href="/reservation/new" class="navbar-left"><small>New Reservation?</small></a></h4>
 </div>
 <div class="container-fluid">
+  <h4>This Restaurant has <%=TableCount.four_seater%> four seater tables and can seat up to <%=TableCount.four_seater * 4 %> people</h4>
   <% if @reservations.count > 0 %> 
   <table class="table table-striped">
     <tr>
