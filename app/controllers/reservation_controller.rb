@@ -4,12 +4,10 @@ class ReservationController < ApplicationController
   end
   def new
     @seats = (1..20).to_a
-    @times = (0..23)
     @reservation = Reservation.new
   end
   def create
     @reservation = Reservation.new(reservation_params)
-    # if @reservation.tables_available? && @reservation.save 
     if @reservation.save
       flash[:success] = ["Your Table has been reserved" ]
       redirect_to root_path

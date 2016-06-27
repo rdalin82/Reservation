@@ -43,5 +43,11 @@ RSpec.describe ReservationController, type: :controller do
       expect(response).to have_http_status(302)
       expect(flash[:warning][0]).to include("No tables")
     end
+    it "should not post if there are 20 tables" do 
+      20.times { |x| Table.create(time: 1, size: 1, date: date_in_the_future) }
+      post "/reservation", reservation: { name: "Rob", seats: 5, time: 1, date: date_in_the_future }, date: {hour: 1 }
+      expect(response).to have_http_status(302)
+      expect(flash[:warning][0]).to include("No tables")
+    end
   end
 end
