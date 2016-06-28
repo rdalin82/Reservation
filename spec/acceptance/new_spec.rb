@@ -1,6 +1,14 @@
 require "rails_helper"
 
 describe "visit new page path", :type => :feature do 
+  let (:date_in_the_future) {"2019-06-22" }
+  before do 
+    Timecop.freeze(Time.local(2015))
+  end
+
+  after do 
+    Timecop.return
+  end
   it "has new reservation heading" do 
     visit "/reservation/new"
     expect(page).to have_content "Enter in a new reservation" 
@@ -10,7 +18,7 @@ describe "visit new page path", :type => :feature do
     within("form") do 
       fill_in("reservation[name]", :with=>"John")
       select(1, :from=>"reservation[seats]")
-      fill_in("reservation[date]", :with=>"2016-09-22")
+      fill_in("reservation[date]", :with=>date_in_the_future)
       select("06 AM", :from=>"date[hour]")
       click_button("Reserve")
     end
@@ -24,12 +32,12 @@ describe "visit new page path", :type => :feature do
     expect(page).to have_content "can't be blank"
   end
   it "should have an error for no tables available" do 
-    20.times { |x| Table.create(time: 1, size: 4, date: "2018-09-22") }
+    20.times { |x| Table.create(time: 1, size: 4, date: date_in_the_future) }
     visit "reservation/new"
     within("form") do 
       fill_in("reservation[name]", :with=>"John")
       select(1, :from=>"reservation[seats]")
-      fill_in("reservation[date]", :with=>"2018-09-22")
+      fill_in("reservation[date]", :with=>date_in_the_future)
       select("01 AM", :from=>"date[hour]")
       click_button("Reserve")
     end
