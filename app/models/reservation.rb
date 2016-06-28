@@ -29,7 +29,8 @@ class Reservation < ActiveRecord::Base
   end
   def tables_needed
     seats = self.seats || 1
-    seats/4 + seats%4
+    return seats/4 if seats%4 == 0
+    return seats/4 + 1
   end
   def tables_used 
     TableCount.four_seater - Table.where(time: self.time, date: self.date).count

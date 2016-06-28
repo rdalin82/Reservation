@@ -18,7 +18,7 @@ RSpec.describe ReservationController, type: :controller do
     end
   end
   describe "Create new reservation", :type => :request do 
-    let (:date_in_the_future) {"2019-06-22" }
+    let (:date_in_the_future) {"2016-06-22" }
     before do 
       Timecop.freeze(Time.local(2015))
     end
