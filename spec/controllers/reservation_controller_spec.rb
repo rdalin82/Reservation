@@ -19,6 +19,14 @@ RSpec.describe ReservationController, type: :controller do
   end
   describe "Create new reservation", :type => :request do 
     let (:date_in_the_future) {"2019-06-22" }
+    before do 
+      Timecop.freeze(Time.local(2015))
+    end
+
+    after do 
+      Timecop.return
+    end
+
     it "saves a valid reservation" do 
       post "/reservation", reservation: {name: "Rob", seats: 4, time: 1, date: DateTime.now + 3.months }, date: {hour: 1 }
       expect(response).to have_http_status(302)
