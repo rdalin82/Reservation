@@ -5,7 +5,6 @@ describe "visit new page path", :type => :feature do
   before do 
     Timecop.freeze(Time.local(2015))
   end
-
   after do 
     Timecop.return
   end
